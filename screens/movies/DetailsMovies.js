@@ -12,8 +12,8 @@ const DetailsMovies = ({ navigation, route }) => {
 
   useEffect(() => {
     const id = route.params.id
-    getDetailMovies(id),
-      getAllActors(id)
+    getDetailMovies(id)
+    getAllActors(id)
   }, [])
 
   function getDetailMovies(id) {
@@ -53,7 +53,7 @@ const DetailsMovies = ({ navigation, route }) => {
           </Card>
           <Text style={detailsMovies.titleActor}>Atores</Text>
           {actor.map(item => (
-            <Card key={item.id} style={detailsMovies.cardActor} mode="outlined">
+            <Card key={item.id} style={detailsMovies.cardActor} mode="outlined" onPress={() => navigation.push('details-actors', {id: item.id}) }>
               <Card.Title
                 title={item.character}
                 subtitle={item.original_name}
