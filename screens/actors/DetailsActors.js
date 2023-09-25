@@ -3,6 +3,7 @@ import apiMovies from "../../services/apiMovies"
 import { useEffect, useState } from "react"
 import { ScrollView, View } from "react-native"
 import detailsActor from "../../styles/detailsActor"
+import { formatDate } from "../../util/convertValues"
 
 const DetailsActors = ({ navigation, route }) => {
 
@@ -40,7 +41,7 @@ const DetailsActors = ({ navigation, route }) => {
           </View>
           <View style={detailsActor.infos}>
             <Text style={detailsActor.infoText}>Sexo: {actor.gender == 1 ? 'Feminino' : 'Masculino'}</Text>
-            <Text style={detailsActor.infoText}>Data Nascimento: {actor.birthday}</Text>
+            <Text style={detailsActor.infoText}>Data Nascimento: {formatDate(actor.birthday)}</Text>
             <Text style={detailsActor.infoText}>Lugar de Nascimento: {actor.place_of_birth}</Text>
           </View>
         </View>
@@ -56,7 +57,7 @@ const DetailsActors = ({ navigation, route }) => {
               <Card key={item.id} style={detailsActor.cardActor} mode="outlined" onPress={() => navigation.push('details-movies', {id: item.id})}>
               <Card.Title
                 title={item.title}
-                subtitle={item.release_date}
+                subtitle={formatDate(item.release_date)}
                 left={(props) => <Avatar.Image size={48} source={{uri: item.poster_path != null ? 'http://image.tmdb.org/t/p/original' + item.poster_path : imageNotDefault}} />}
                 right={(props) => <IconButton {...props} icon="chevron-right" onPress={() => { }} />}
               />
