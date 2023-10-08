@@ -1,22 +1,48 @@
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import PopularMovies from './screens/movies/PopularMovies';
 import { PaperProvider } from 'react-native-paper';
-import DetailsMovies from './screens/movies/DetailsMovies';
-import DetailsActors from './screens/actors/DetailsActors';
+import PopularMovies from './screens/movies/PopularMovies';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import StackMovies from './screens/movies/StackMovies';
+import StackActors from './screens/actors/StackActors';
+import StackTv from './screens/tv/StackTv';
 
-const Stack = createNativeStackNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 export default function App() {
   return (
     <>
       <PaperProvider>
         <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen name="popular-movies" component={PopularMovies} options={{ title: 'Filmes Populares' }} />
-            <Stack.Screen name="details-movies" component={DetailsMovies} options={{ title: 'Detalhes do filme' }} />
-            <Stack.Screen name="details-actors" component={DetailsActors} options={{ title: 'Detalhes do Ator' }} />
-          </Stack.Navigator>
+          <Tab.Navigator>
+            <Tab.Screen
+              name="Filmes"
+              component={StackMovies}
+              options={{
+                tabBarIcon: () => (
+                  <MaterialCommunityIcons name="movie-filter" size={26} />
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="Atores"
+              component={StackActors}
+              options={{
+                tabBarIcon: () => (
+                  <MaterialCommunityIcons name="account-group" size={26} />
+                ),
+              }}
+            />
+            <Tab.Screen
+              name="Séries"
+              component={StackTv}
+              options={{
+                tabBarIcon: () => (
+                  <MaterialCommunityIcons name="youtube-tv" size={26} />
+                ),
+              }}
+            />
+          </Tab.Navigator>
         </NavigationContainer>
       </PaperProvider>
     </>

@@ -21,6 +21,19 @@ const card = StyleSheet.create({
   },
   title: {
     marginTop: 5
+  },
+  containerActor: {
+    flexDirection:"row",
+    flexWrap: "wrap",
+    alignItems: "center"
+  },
+  cardPosterActor: {
+    height: 300,
+    width: 135,
+    margin: 5,
+  },
+  cardTextActor:{
+    alignItems: "center",
   }
 })
 
